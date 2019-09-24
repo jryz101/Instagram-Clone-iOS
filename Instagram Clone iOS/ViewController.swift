@@ -40,6 +40,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     
+    
+    
+    
+    
+    
+    
     //MARK: - sign up or login action and outlet
     @IBOutlet weak var signupOrLoginOutlet: UIButton!
     @IBAction func signupOrLogin(_ sender: Any) {
@@ -51,6 +57,16 @@ class ViewController: UIViewController {
             
             
         } else {
+            
+            ////spinner activity indicator
+            let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.style = UIActivityIndicatorView.Style.gray
+            view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            
             
             ////methods for signing up user with email and password
             if (signupModeisActive) {
@@ -64,6 +80,12 @@ class ViewController: UIViewController {
                 ////Signs up the user *asynchronously*
                 user.signUpInBackground { (success, error) in
                     
+                    
+                    ////Stops the animation of the progress indicator
+                    activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
+                    
                     if let error = error {
                         
                         self.displayAlert(title:"Could Not Sign Up", message: error.localizedDescription)
@@ -76,11 +98,40 @@ class ViewController: UIViewController {
                     
                 }
                 
-            }
+            } else {
+                
+                ////methods for log in user with email and password
+                PFUser.logInWithUsername(inBackground: email.text!, password: password.text!) { (user, error) in
+                    
+                    ////Stops the animation of the progress indicator
+                    activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
+                    if user != nil {
+                        
+                        print("Login Sucessfull")
+                        
+                    } else {
+                        
+                        var errorText = "UNKNOWN ERROR: Please Try Again"
+                        
+                        if let error = error {
+                            
+                            errorText = error.localizedDescription
+                            
+                        }
+                        
+                        self.displayAlert(title:"Could Not Sign Up", message: errorText)
+                        
+                        }
+                
+                    }
+                
+                }
             
-        }
+            }
     
-    }
+        }
     
     
     
