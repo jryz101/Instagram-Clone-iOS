@@ -187,6 +187,8 @@ class ViewController: UIViewController {
             performSegue(withIdentifier: "showUserTable", sender: self)
             
         }
+        
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
 

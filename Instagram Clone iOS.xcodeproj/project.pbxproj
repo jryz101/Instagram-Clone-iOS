@@ -74,8 +74,8 @@
 			children = (
 				8AFC16E7233A366C00570279 /* AppDelegate.swift */,
 				8AFC16E9233A366C00570279 /* ViewController.swift */,
-				8AFC16EB233A366C00570279 /* Main.storyboard */,
 				8A7043D72340D7A20000C808 /* UserTableViewController.swift */,
+				8AFC16EB233A366C00570279 /* Main.storyboard */,
 				8AFC16EE233A366D00570279 /* Assets.xcassets */,
 				8AFC16F0233A366D00570279 /* LaunchScreen.storyboard */,
 				8AFC16F3233A366D00570279 /* Info.plist */,
