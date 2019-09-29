@@ -94,6 +94,9 @@ class ViewController: UIViewController {
                         
                         print("Signing Up")
                         
+                        ////perform segue after user sign up
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
+                        
                     }
                     
                 }
@@ -110,6 +113,9 @@ class ViewController: UIViewController {
                     if user != nil {
                         
                         print("Login Sucessfull")
+                        
+                        ////perform segue after user login
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                         
                     } else {
                         
@@ -168,6 +174,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    
+    
+    //MARK: - view did appear section
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if PFUser.current() != nil {
+            
+            ////perform segue when user already logged in
+            performSegue(withIdentifier: "showUserTable", sender: self)
+            
+        }
     }
 }
 

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let configuration = ParseClientConfiguration {
             
             
+
         }
         
         Parse.initialize(with: configuration)
