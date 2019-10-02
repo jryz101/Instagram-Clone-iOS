@@ -13,6 +13,8 @@ class UserTableViewController: UITableViewController {
     var usernames = [""]
     ////object ids array
     var objectIds = [""]
+    ////is following dictionary with boolean data type
+    var isFollowing = ["" : true]
     
     
     //MARK: - logout action
@@ -50,8 +52,12 @@ class UserTableViewController: UITableViewController {
                 
                 ////remove first object in usernames array
                 self.usernames.removeAll()
-                ////remove first object in object ids
+                ////remove first object in objectIds
                 self.objectIds.removeAll()
+                ////remove first object in isFollowing dictionary
+                self.isFollowing.removeAll()
+                
+                
                 
                 for object in users {
                     
@@ -71,15 +77,36 @@ class UserTableViewController: UITableViewController {
                             self.usernames.append(usernameArray[0])
                             ////append objectIds data to objectId array
                             self.objectIds.append(objectId)
-                        
+                                
+                                
+                                ////methods for checking is following user methods
+                                let query = PFQuery(className: "FollowingRelation")
+                                
+                                query.whereKey("Follower", equalTo: PFUser.current()?.objectId)
+                                query.whereKey("Following",equalTo: objectId)
+                                
+                                query.findObjectsInBackground(block: { (objects, error) in
+                                    
+                                    if let objects = objects {
+                                        
+                                        if objects.count > 0 {
+                                            
+                                            self.isFollowing[objectId] = true
+                                            
+                                        } else {
+                                            
+                                            self.isFollowing[objectId] = false
+                                            
+                                        }
+                                        
+                                        self.tableView.reloadData()
+                                    }
+                                })
                             }
                         }
                     }
                 }
-                
-                self.tableView.reloadData()
             }
-            
         })
     }
     
@@ -89,24 +116,39 @@ class UserTableViewController: UITableViewController {
     // MARK: - table view data source section
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        // #warning Incomplete implementation, return the number of sections
+        //#warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        // #warning Incomplete implementation, return the number of rows
+        //#warning Incomplete implementation, return the number of rows
         ////return usernames in each row section
         return usernames.count
     }
-
+    
+    //MARK: - cell for row at index path section
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
         cell.textLabel!.text = usernames[indexPath.row]
+        
+        
+        ////Update is following value and set to display checkmark
+        if let followsBoolean = isFollowing[objectIds[indexPath.row]] {
+            
+            
+            if followsBoolean {
+                
+                cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+            }
+        }
+        
         return cell
     }
+    
+    
     
     
     
