@@ -14,7 +14,7 @@ class UserTableViewController: UITableViewController {
     ////object ids array
     var objectIds = [""]
     ////is following dictionary with boolean data type
-    var isFollowing = ["" : true]
+    var isFollowing = ["" : false]
     
     
     //MARK: - logout action
@@ -39,7 +39,7 @@ class UserTableViewController: UITableViewController {
         let query = PFUser.query()
         
         ////Add a constraint to the query that requires a particular key's object to be not equal to the provided object
-        query?.whereKey("username", notEqualTo: PFUser.current()?.username)
+        query?.whereKey("username", notEqualTo: PFUser.current()?.username as Any)
         
         ////Finds objects *asynchronously* and calls the given block with the results
         query?.findObjectsInBackground(block: { (users, error) in
@@ -79,10 +79,12 @@ class UserTableViewController: UITableViewController {
                             self.objectIds.append(objectId)
                                 
                                 
-                                ////methods for checking is following user methods
+                                
+                                
+                                ////methods for checking is following users
                                 let query = PFQuery(className: "FollowingRelation")
                                 
-                                query.whereKey("Follower", equalTo: PFUser.current()?.objectId)
+                                query.whereKey("Follower", equalTo: PFUser.current()?.objectId as Any)
                                 query.whereKey("Following",equalTo: objectId)
                                 
                                 query.findObjectsInBackground(block: { (objects, error) in
@@ -129,6 +131,7 @@ class UserTableViewController: UITableViewController {
     
     //MARK: - cell for row at index path section
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
@@ -152,21 +155,56 @@ class UserTableViewController: UITableViewController {
     
     
     
+    
+    
     //MARK: - did select row at index path section
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
         
-        cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
         
-        ////follow users method
-        let followingRelation = PFObject(className: "FollowingRelation")
-        
-        followingRelation["Follower"]  = PFUser.current()?.objectId
-        followingRelation["Following"] = objectIds[indexPath.row]
-        
-        followingRelation.saveInBackground()
-        
+        ////unfollow methods, set display checkmark to none and remove data from parse server
+        if let followsBoolean = isFollowing[objectIds[indexPath.row]] {
+            
+            
+            if followsBoolean {
+                
+                isFollowing[objectIds[indexPath.row]] = false
+                
+                cell?.accessoryType = UITableViewCell.AccessoryType.none
+                
+                let query = PFQuery(className: "FollowingRelation")
+                
+                query.whereKey("Follower", equalTo: PFUser.current()?.objectId as Any)
+                query.whereKey("Following",equalTo: objectIds[indexPath.row])
+                
+                query.findObjectsInBackground(block: { (objects, error) in
+                    
+                    if let objects = objects {
+                        
+                        for objects in objects {
+                            
+                            objects.deleteInBackground()
+                        }
+                    }
+                    
+                })
+            
+            } else {
+                
+                isFollowing[objectIds[indexPath.row]] = true
+                
+                cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                
+                
+                let followingRelation = PFObject(className: "FollowingRelation")
+                
+                followingRelation["Follower"]  = PFUser.current()?.objectId
+                followingRelation["Following"] = objectIds[indexPath.row]
+                
+                followingRelation.saveInBackground()
+                
+            }
+        }
     }
-
 }
