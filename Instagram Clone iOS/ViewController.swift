@@ -188,6 +188,7 @@ class ViewController: UIViewController {
             
         }
         
+        ////A Boolean value that determines whether the navigation bar view is hidden.
         self.navigationController?.navigationBar.isHidden = true
     }
 }
