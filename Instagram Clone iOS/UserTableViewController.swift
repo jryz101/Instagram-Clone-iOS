@@ -9,6 +9,7 @@ import Parse
 
 class UserTableViewController: UITableViewController {
     
+    //MARK: - objects section
     ////usernames array
     var usernames = [""]
     ////object ids array
@@ -125,7 +126,7 @@ class UserTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //#warning Incomplete implementation, return the number of rows
-        ////return usernames in each row section
+        ////return usernames in each row in section
         return usernames.count
     }
     
