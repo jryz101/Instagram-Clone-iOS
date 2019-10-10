@@ -10,6 +10,9 @@
 		82F38466FC6C7498CC1479F8 /* Pods_Instagram_Clone_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3707466EE178E9944258183F /* Pods_Instagram_Clone_iOS.framework */; };
 		8A7043D82340D7A20000C808 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7043D72340D7A20000C808 /* UserTableViewController.swift */; };
 		8ACE6C692347DC730082EE42 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACE6C682347DC730082EE42 /* PostViewController.swift */; };
+		8AD8EBE0234E350200A85C29 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8EBDF234E350200A85C29 /* FeedTableViewController.swift */; };
+		8AD8EBE2234E373300A85C29 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8EBE1234E373300A85C29 /* FeedTableViewCell.swift */; };
+		8AD8EBE4234E3AD200A85C29 /* Demo Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AD8EBE3234E3AD200A85C29 /* Demo Image.png */; };
 		8AFC16E8233A366C00570279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC16E7233A366C00570279 /* AppDelegate.swift */; };
 		8AFC16EA233A366C00570279 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC16E9233A366C00570279 /* ViewController.swift */; };
 		8AFC16ED233A366C00570279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC16EB233A366C00570279 /* Main.storyboard */; };
@@ -22,6 +25,9 @@
 		3707466EE178E9944258183F /* Pods_Instagram_Clone_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_Clone_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A7043D72340D7A20000C808 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		8ACE6C682347DC730082EE42 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		8AD8EBDF234E350200A85C29 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		8AD8EBE1234E373300A85C29 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		8AD8EBE3234E3AD200A85C29 /* Demo Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Demo Image.png"; sourceTree = "<group>"; };
 		8AFC16E4233A366C00570279 /* Instagram Clone iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram Clone iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFC16E7233A366C00570279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AFC16E9233A366C00570279 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +84,9 @@
 				8AFC16E9233A366C00570279 /* ViewController.swift */,
 				8A7043D72340D7A20000C808 /* UserTableViewController.swift */,
 				8ACE6C682347DC730082EE42 /* PostViewController.swift */,
+				8AD8EBDF234E350200A85C29 /* FeedTableViewController.swift */,
+				8AD8EBE1234E373300A85C29 /* FeedTableViewCell.swift */,
+				8AD8EBE3234E3AD200A85C29 /* Demo Image.png */,
 				8AFC16EB233A366C00570279 /* Main.storyboard */,
 				8AFC16EE233A366D00570279 /* Assets.xcassets */,
 				8AFC16F0233A366D00570279 /* LaunchScreen.storyboard */,
@@ -155,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AFC16F2233A366D00570279 /* LaunchScreen.storyboard in Resources */,
+				8AD8EBE4234E3AD200A85C29 /* Demo Image.png in Resources */,
 				8AFC16EF233A366D00570279 /* Assets.xcassets in Resources */,
 				8AFC16ED233A366C00570279 /* Main.storyboard in Resources */,
 			);
@@ -210,7 +220,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ACE6C692347DC730082EE42 /* PostViewController.swift in Sources */,
+				8AD8EBE2234E373300A85C29 /* FeedTableViewCell.swift in Sources */,
 				8AFC16EA233A366C00570279 /* ViewController.swift in Sources */,
+				8AD8EBE0234E350200A85C29 /* FeedTableViewController.swift in Sources */,
 				8A7043D82340D7A20000C808 /* UserTableViewController.swift in Sources */,
 				8AFC16E8233A366C00570279 /* AppDelegate.swift in Sources */,
 			);
